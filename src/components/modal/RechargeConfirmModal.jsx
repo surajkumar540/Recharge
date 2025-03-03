@@ -39,6 +39,7 @@ const RechargeConfirmationModal = ({
         onClose();
         setMpin("");
         setFormValues({
+          activeTab: "prepaid",
           mobileNumber: "",
           operator: "Reliance JIO",
           circle: "UP West",
