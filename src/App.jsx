@@ -165,6 +165,7 @@ const AimraMoney = () => {
         formValues={formValues}
         setFormValues={setFormValues}
         handleRechargeSuccess={handleRechargeSuccess}
+        setShowPlans={setShowPlans}
       />
 
       {/* Footer */}

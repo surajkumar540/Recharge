@@ -6,6 +6,7 @@ const RechargeConfirmationModal = ({
   formValues,
   setFormValues,
   handleRechargeSuccess,
+  setShowPlans,
 }) => {
   const [mpin, setMpin] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -43,6 +44,7 @@ const RechargeConfirmationModal = ({
           circle: "UP West",
           amount: "",
         });
+        setShowPlans(false);
       }, 3000);
     }, 1500);
   };
