@@ -94,7 +94,7 @@ const AimraMoney = () => {
       return;
     }
     if (!amount) {
-      alert("Please enter an amount");
+      alert("Please Select an amount");
       return;
     }
 
