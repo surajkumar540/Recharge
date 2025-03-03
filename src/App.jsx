@@ -8,6 +8,7 @@ import Plans from "./components/Plans";
 import RechargeConfirmationModal from "./components/modal/RechargeConfirmModal";
 import Footer from "./components/Footer";
 import plansData from "./components/data/PlanData";
+import Marquee from "./components/Marquee";
 // Dynamic plans data organized by plan type
 
 const AimraMoney = () => {
@@ -121,6 +122,7 @@ const AimraMoney = () => {
     <div className="min-h-screen bg-gray-50">
       <TopBar />
       <Navigation />
+      <Marquee />
 
       {/* Main content */}
       <div className="container mx-auto px-4 py-6">
