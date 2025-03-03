@@ -1,6 +1,7 @@
 import React from "react";
 
-const RecentTransactions = () => {
+const RecentTransactions = ({ transactions }) => {
+  console.log(transactions)
   return (
     <div className="mt-8 bg-white rounded-xl shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">
@@ -10,96 +11,62 @@ const RecentTransactions = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                 Date
               </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                 Type
               </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                 Number
               </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                 Amount
               </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
+              {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                 Status
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            <tr className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                2025-03-02
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                Mobile Recharge
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                9876543210
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                ₹199
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Success
-                </span>
-              </td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                2025-03-01
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                DTH Recharge
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                12345678
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                ₹399
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Success
-                </span>
-              </td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                2025-02-28
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                Mobile Recharge
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                8765432109
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                ₹299
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                  Failed
-                </span>
-              </td>
-            </tr>
+            {transactions && transactions?.length > 0 ? (
+              transactions.map((transaction, index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 text-sm text-gray-700">
+                    {transaction.date}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700">
+                    {transaction.circle}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700">
+                    {transaction.mobileNumber}
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700">
+                    ₹{transaction.amount}
+                  </td>
+                  {/* <td className="px-6 py-4">
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        transaction.status === "Success"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      {transaction.status}
+                    </span>
+                  </td> */}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="text-center text-sm text-gray-500 py-4"
+                >
+                  No recent transactions
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -108,3 +75,4 @@ const RecentTransactions = () => {
 };
 
 export default RecentTransactions;
+//

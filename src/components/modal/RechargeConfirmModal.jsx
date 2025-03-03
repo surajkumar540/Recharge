@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-const RechargeConfirmationModal = ({ isOpen, onClose, formValues }) => {
+const RechargeConfirmationModal = ({
+  isOpen,
+  onClose,
+  formValues,
+  setFormValues,
+  handleRechargeSuccess,
+}) => {
   const [mpin, setMpin] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -25,12 +31,18 @@ const RechargeConfirmationModal = ({ isOpen, onClose, formValues }) => {
     setTimeout(() => {
       setIsProcessing(false);
       setShowSuccess(true);
-
+      handleRechargeSuccess();
       // Close success popup after 3 seconds
       setTimeout(() => {
         setShowSuccess(false);
         onClose();
         setMpin("");
+        setFormValues({
+          mobileNumber: "",
+          operator: "Reliance JIO",
+          circle: "UP West",
+          amount: "",
+        });
       }, 3000);
     }, 1500);
   };

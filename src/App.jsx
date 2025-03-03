@@ -26,6 +26,7 @@ const AimraMoney = () => {
   const [showPlans, setShowPlans] = useState(false);
   const [currentPlans, setCurrentPlans] = useState([]);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [recentTransactions, setRecentTransactions] = useState([]);
 
   // Load plans when plan type changes
   useEffect(() => {
@@ -100,6 +101,22 @@ const AimraMoney = () => {
     setShowConfirmModal(true);
   };
 
+  const handleRechargeSuccess = () => {
+    const newTransaction = {
+      mobileNumber: formValues.mobileNumber,
+      amount: formValues.amount,
+      operator: formValues.operator,
+      circle: formValues.circle,
+      date: new Date().toLocaleString(),
+    };
+
+    setRecentTransactions((prevTransactions) => {
+      const updatedTransactions = [newTransaction, ...prevTransactions];
+      console.log("Updated Transactions:", updatedTransactions); // Debug log
+      return updatedTransactions;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <TopBar />
@@ -120,6 +137,7 @@ const AimraMoney = () => {
             isLoading={isLoading}
             handleViewPlans={handleViewPlans}
             handleRecharge={handleRecharge}
+            setFormValues={setFormValues}
           />
 
           {/* Right panel - Plans */}
@@ -137,7 +155,7 @@ const AimraMoney = () => {
         </div>
 
         {/* Recent Transactions Section */}
-        <RecentTransactions />
+        <RecentTransactions transactions={recentTransactions} />
       </div>
 
       {/* Recharge Confirmation Modal */}
@@ -145,6 +163,8 @@ const AimraMoney = () => {
         isOpen={showConfirmModal}
         onClose={() => setShowConfirmModal(false)}
         formValues={formValues}
+        setFormValues={setFormValues}
+        handleRechargeSuccess={handleRechargeSuccess}
       />
 
       {/* Footer */}
