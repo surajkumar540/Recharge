@@ -11,7 +11,7 @@ const Plans = ({
   return (
     <>
       {showPlans && (
-        <div className="bg-white rounded-xl shadow-md p-6 flex-1">
+        <div className="bg-white rounded-xl shadow-md p-6 flex-1 ">
           <div className="flex items-center justify-between border-b pb-4 mb-6">
             <h2 className="text-xl font-bold text-gray-800">
               {formValues.operator} Plans
@@ -37,7 +37,7 @@ const Plans = ({
             ))}
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-gray-200">
+          <div className="overflow-hidden rounded-lg border border-gray-200 overflow-x-auto" >
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -67,11 +67,11 @@ const Plans = ({
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-200  ">
                 {currentPlans.map((plan, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 transition duration-150"
+                    className="hover:bg-gray-50 transition duration-150 overflow-x-scroll"
                   >
                     <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       ₹{plan.amount}
